@@ -1,0 +1,22 @@
+SELECT 
+    id,
+    (SELECT 
+            COUNT(*)
+        FROM
+            `like`
+        WHERE
+            `user`.id = `like`.user_id) + (SELECT 
+            COUNT(*)
+        FROM
+            `message`
+        WHERE
+            `user`.id = `message`.from_user_id) + (SELECT 
+            COUNT(*)
+        FROM
+            `friend_request`
+        WHERE
+            `user`.id = `friend_request`.from_user_id) AS activity
+FROM
+    vk.user
+ORDER BY activity
+LIMIT 10;

@@ -1,0 +1,5 @@
+SELECT 
+(SELECT gender FROM vk.profile WHERE id = user_id) AS gender,
+COUNT(*)
+FROM vk.like
+GROUP BY gender;

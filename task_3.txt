@@ -1,0 +1,13 @@
+SELECT 
+    COUNT(*)
+FROM
+    vk.like
+WHERE 
+user_id IN ( SELECT * FROM (
+SELECT 
+    user_id
+FROM
+    vk.profile
+ORDER BY birthday DESC
+LIMIT 10) t
+);
